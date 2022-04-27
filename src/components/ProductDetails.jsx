@@ -8,9 +8,11 @@ class ProductDetails extends React.Component {
       location:
       {
         state: { title, price, thumbnail },
-        data: { addToCart },
+        // data: { addToCart },
       },
+      addToCart,
     } = this.props;
+    console.log(addToCart);
     return (
       <div>
         <CartButton />
@@ -40,8 +42,8 @@ ProductDetails.propTypes = {
       price: PropTypes.string.isRequired,
       thumbnail: PropTypes.string.isRequired,
     }),
-    data: PropTypes.number,
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

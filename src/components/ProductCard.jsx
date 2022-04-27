@@ -18,7 +18,7 @@ class ProductCard extends React.Component {
             to={ {
               pathname: '/productdetails',
               state: { title, price, thumbnail },
-              data: { addToCart },
+              // data: { addToCart },
             } }
           >
             Mais Detalhes
