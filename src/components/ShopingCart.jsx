@@ -1,24 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CartCard from './CartCard';
 
 class ShoppingCart extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      // counter: 0,
+      // mount: true,
+      resume: [],
+    };
+  }
+
+  componentDidMount() {
+    // O objetivo é criar o objeto que vai receber a quantidade.
+    const { cart } = this.props;
+    if (cart && cart.length > 0) {
+      cart.map((element) => {
+        const { price } = element;
+        return this.setState((prevState) => ({
+          resume: [...prevState.resume, { quant: 1, price }],
+        }));
+      });
+    }
+  }
+
   render() {
-    const { /* location: { state: { cart } }, */ cart } = this.props;
-    // console.log(this.props);
+    const { cart } = this.props;
+    const { resume } = this.state;
     return (
       <div>
-        {cart.length > 0 ? cart.map((element) => {
+        {cart.length > 0 ? cart.map((element, index) => {
           const { title, price, thumbnail } = element;
           return (
             <div key={ title }>
-              <div>
-                <h4 data-testid="shopping-cart-product-name">{ title }</h4>
-              </div>
-              <div>
-                <img src={ thumbnail } alt={ title } />
-                <p>{ `R$ ${price}` }</p>
-              </div>
-              <p data-testid="shopping-cart-product-quantity">1</p>
+              <CartCard
+                key={ title }
+                title={ title }
+                price={ price }
+                thumbnail={ thumbnail }
+                // mount={ mount }
+                resume={ resume }
+                id={ index }
+              />
             </div>
           );
         }) : (
