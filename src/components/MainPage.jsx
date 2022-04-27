@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from './ProductCard';
 import CartButton from './CartButton';
@@ -11,7 +12,6 @@ class MainPage extends React.Component {
       inputValue: '',
       products: [],
       category: '',
-      cart: [],
     };
   }
 
@@ -48,14 +48,9 @@ class MainPage extends React.Component {
     }), () => this.searchApi());
   }
 
-  addToCart = (title, price, thumbnail) => {
-    this.setState((prevState) => ({
-      cart: [...prevState.cart, { title, price, thumbnail }],
-    }));
-  }
-
   render() {
-    const { categories, products, cart } = this.state;
+    const { categories, products } = this.state;
+    const { addToCart } = this.props;
     return (
       <div>
         <input
@@ -72,7 +67,7 @@ class MainPage extends React.Component {
         >
           Pesquisar
         </button>
-        <CartButton cart={ cart } />
+        <CartButton /* cart={ cart } *//>
         <p
           data-testid="home-initial-message"
         >
@@ -101,7 +96,7 @@ class MainPage extends React.Component {
                 title={ title }
                 price={ price }
                 thumbnail={ thumbnail }
-                addToCart={ this.addToCart }
+                addToCart={ addToCart }
               />
             );
           }))}
@@ -109,5 +104,9 @@ class MainPage extends React.Component {
     );
   }
 }
+
+MainPage.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default MainPage;
