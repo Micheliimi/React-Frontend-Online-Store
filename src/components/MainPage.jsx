@@ -50,7 +50,7 @@ class MainPage extends React.Component {
 
   render() {
     const { categories, products } = this.state;
-    const { addToCart } = this.props;
+    const { addToCart, cart } = this.props;
     return (
       <div>
         <input
@@ -67,7 +67,7 @@ class MainPage extends React.Component {
         >
           Pesquisar
         </button>
-        <CartButton /* cart={ cart } *//>
+        <CartButton cart={ cart } />
         <p
           data-testid="home-initial-message"
         >
@@ -89,13 +89,15 @@ class MainPage extends React.Component {
         })}
         {products.length > 0 && (
           products.map((element) => {
-            const { title, price, thumbnail } = element;
+            const { title, price, thumbnail, available_quantity } = element;
+            console.log(available_quantity);
             return (
               <ProductCard
                 key={ title }
                 title={ title }
                 price={ price }
                 thumbnail={ thumbnail }
+                availableQuantity={ available_quantity }
                 addToCart={ addToCart }
               />
             );

@@ -3,6 +3,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import ShoppingCart from './components/ShopingCart';
 import ProductDetails from './components/ProductDetails';
+import Checkout from './components/Checkout';
 import './App.css';
 
 class App extends React.Component {
@@ -13,9 +14,9 @@ class App extends React.Component {
     };
   }
 
-  addToCart = (title, price, thumbnail) => {
+  addToCart = (title, price, thumbnail, availableQuantity) => {
     this.setState((prevState) => ({
-      cart: [...prevState.cart, { title, price, thumbnail }],
+      cart: [...prevState.cart, { title, price, thumbnail, availableQuantity }],
     }));
   }
 
@@ -27,7 +28,7 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ (props) => <MainPage { ...props } addToCart={ this.addToCart } /> }
+            render={ (props) => <MainPage { ...props } addToCart={ this.addToCart } cart={ cart } /> }
           />
           <Route
             exact
@@ -47,8 +48,13 @@ class App extends React.Component {
               <ProductDetails
                 { ...props }
                 addToCart={ this.addToCart }
+                cart={ cart }
               />
             ) }
+          />
+          <Route
+            path="/checkout"
+            component={ Checkout }
           />
         </BrowserRouter>
       </div>
