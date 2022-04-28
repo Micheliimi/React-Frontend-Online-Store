@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CartCard from './CartCard';
+import { Redirect } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -9,6 +10,8 @@ class ShoppingCart extends React.Component {
       // counter: 0,
       // mount: true,
       resume: [],
+      redirect: false, /* >>>>>>> Estado adicionado p/ req 12 <<<<< */
+      finishShopping: [],
     };
   }
 
@@ -25,13 +28,29 @@ class ShoppingCart extends React.Component {
     }
   }
 
+  // >>>>>>> Função para req 12 <<<<<<<<
+  redirectToCheckout = () => {
+    this.setState({
+      redirect: true,
+    });
+  }
+
+  getPrice = (info) => {
+    // console.log(info);
+    this.setState((prevState) => ({
+      finishShopping: [...prevState.finishShopping, info],
+    }), () => console.log(this.state.finishShopping));
+  }
+
   render() {
     const { cart } = this.props;
-    const { resume } = this.state;
+    // console.log(cart);
+    const { resume, redirect, finishShopping } = this.state;
     return (
       <div>
         {cart.length > 0 ? cart.map((element, index) => {
-          const { title, price, thumbnail } = element;
+          const { title, price, thumbnail, availableQuantity } = element;
+          console.log(availableQuantity)
           return (
             <div key={ title }>
               <CartCard
@@ -39,10 +58,20 @@ class ShoppingCart extends React.Component {
                 title={ title }
                 price={ price }
                 thumbnail={ thumbnail }
-                // mount={ mount }
+                availableQuantity={ availableQuantity }
                 resume={ resume }
                 id={ index }
+                getPrice={ this.getPrice }
               />
+              {/* >>>>>>>> requisito 12 -Botão abaixo adicionado por Michele <<<<<<<<< */}
+              <button
+                type="button"
+                data-testid="checkout-products"
+                onClick={ this.redirectToCheckout }
+                // >>>>> Evento adiciona para req 12 <<<<<<
+              >
+                Finalizar Compra
+              </button>
             </div>
           );
         }) : (
@@ -51,6 +80,14 @@ class ShoppingCart extends React.Component {
           >
             Seu carrinho está vazio
           </p>
+        )}
+        {/* >>>> Redirect abaixo adicionado para requisito 12 <<< */}
+        {redirect && (<Redirect
+          to={ {
+            pathname: '/checkout',
+            state: { finishShopping },
+          } }
+        />
         )}
       </div>
     );

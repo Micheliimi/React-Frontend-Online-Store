@@ -58,7 +58,7 @@ class ProductDetails extends React.Component {
     const {
       location:
       {
-        state: { title, price, thumbnail },
+        state: { title, price, thumbnail, cart },
       },
       addToCart,
     } = this.props;
@@ -66,7 +66,9 @@ class ProductDetails extends React.Component {
     console.log(addToCart);
     return (
       <div>
-        <CartButton />
+        <CartButton
+          cart={ cart }
+        />
         <div>
           <h4 data-testid="product-detail-name">{ title }</h4>
         </div>
@@ -77,7 +79,7 @@ class ProductDetails extends React.Component {
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
-          onClick={ () => addToCart(title, price, thumbnail) }
+          onClick={ () => addToCart(title, price, thumbnail ) }
         >
           Adicionar
         </button>
@@ -109,6 +111,7 @@ ProductDetails.propTypes = {
       title: PropTypes.string.isRequired,
       price: PropTypes.string.isRequired,
       thumbnail: PropTypes.string.isRequired,
+      cart: PropTypes.arrayOf.isRequired,
     }),
   }).isRequired,
   addToCart: PropTypes.func.isRequired,
