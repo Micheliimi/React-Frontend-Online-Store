@@ -51,6 +51,7 @@ class MainPage extends React.Component {
   render() {
     const { categories, products } = this.state;
     const { addToCart, cart } = this.props;
+    // const { availableQuantity } = cart;
     return (
       <div>
         <input
@@ -89,15 +90,15 @@ class MainPage extends React.Component {
         })}
         {products.length > 0 && (
           products.map((element) => {
-            const { title, price, thumbnail, available_quantity } = element;
-            console.log(available_quantity);
+            const { title, price, thumbnail, availableQuantity } = element;
+            // console.log(available_quantity);
             return (
               <ProductCard
                 key={ title }
                 title={ title }
                 price={ price }
                 thumbnail={ thumbnail }
-                availableQuantity={ available_quantity }
+                availableQuantity={ availableQuantity }
                 addToCart={ addToCart }
               />
             );
@@ -109,6 +110,7 @@ class MainPage extends React.Component {
 
 MainPage.propTypes = {
   addToCart: PropTypes.func.isRequired,
+  cart: PropTypes.arrayOf.isRequired,
 };
 
 export default MainPage;

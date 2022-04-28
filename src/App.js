@@ -28,7 +28,11 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={ (props) => <MainPage { ...props } addToCart={ this.addToCart } cart={ cart } /> }
+            render={ (props) => (<MainPage
+              { ...props }
+              addToCart={ this.addToCart }
+              cart={ cart }
+            />) }
           />
           <Route
             exact

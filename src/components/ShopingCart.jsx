@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CartCard from './CartCard';
 import { Redirect } from 'react-router-dom';
+import CartCard from './CartCard';
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -39,7 +39,7 @@ class ShoppingCart extends React.Component {
     // console.log(info);
     this.setState((prevState) => ({
       finishShopping: [...prevState.finishShopping, info],
-    }), () => console.log(this.state.finishShopping));
+    }));
   }
 
   render() {
@@ -50,7 +50,7 @@ class ShoppingCart extends React.Component {
       <div>
         {cart.length > 0 ? cart.map((element, index) => {
           const { title, price, thumbnail, availableQuantity } = element;
-          console.log(availableQuantity)
+          // console.log(availableQuantity)
           return (
             <div key={ title }>
               <CartCard
