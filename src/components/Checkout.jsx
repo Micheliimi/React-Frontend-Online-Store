@@ -22,7 +22,7 @@ class Checkout extends React.Component {
 
   componentDidMount() {
     const { location: { state: { finishShopping } } } = this.props;
-    console.log(finishShopping);
+    // console.log(finishShopping);
     this.setState(({
       finalCart: finishShopping || [],
     }), () => {
@@ -79,7 +79,7 @@ class Checkout extends React.Component {
   render() {
     const { location: { state: { finishShopping } } } = this.props;
     const { totalShopping, buttonDisabled, redirect } = this.state;
-    console.log(finishShopping);
+    // console.log(finishShopping);
     return (
       <div>
         <section>

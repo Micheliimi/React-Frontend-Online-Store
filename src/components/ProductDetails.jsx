@@ -64,7 +64,7 @@ class ProductDetails extends React.Component {
       cart,
     } = this.props;
     const { avaluations } = this.state;
-    console.log(cart);
+    // console.log(cart);
     return (
       <div>
         <CartButton

@@ -36,6 +36,7 @@ class MainPage extends React.Component {
   searchApi = async () => {
     const { inputValue, category } = this.state;
     const result = await getProductsFromCategoryAndQuery(category, inputValue);
+    // console.log(result);
     this.setState({
       products: result.results,
     });
@@ -91,7 +92,13 @@ class MainPage extends React.Component {
         })}
         {products.length > 0 && (
           products.map((element) => {
-            const { title, price, thumbnail, available_quantity: quantity } = element;
+            const { title,
+              price,
+              thumbnail,
+              available_quantity: quantity,
+              shipping,
+            } = element;
+            const { free_shipping: freeShipping } = shipping;
             // const quantity = element.available_quantity; // Outra solução para renomear chave sem camel case.
             return (
               <ProductCard
@@ -101,6 +108,7 @@ class MainPage extends React.Component {
                 thumbnail={ thumbnail }
                 availableQuantity={ quantity }
                 addToCart={ addToCart }
+                freeShipping={ freeShipping }
               />
             );
           }))}
