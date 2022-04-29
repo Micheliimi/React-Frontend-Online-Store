@@ -25,8 +25,8 @@ class CartCard extends React.Component {
   increment = () => {
     const { availableQuantity } = this.props;
     const { counter } = this.state;
-    console.log(availableQuantity);
-    console.log('entrou função soma ');
+    // console.log(availableQuantity);
+    // console.log('entrou função soma ');
     if (counter < availableQuantity) {
       this
         .setState((prevState) => (
@@ -56,10 +56,10 @@ class CartCard extends React.Component {
   }
 
   sendResume = () => {
-    console.log('hellouu');
+    // console.log('hellouu');
     const { title, price, thumbnail, getPrice } = this.props;
     const { counter } = this.state;
-    console.log(counter);
+    // console.log(counter);
     this.setState(({
       total: price * counter,
     }), () => {
@@ -70,7 +70,7 @@ class CartCard extends React.Component {
           thumbnail },
       }), () => {
         const { info } = this.state;
-        console.log('hello');
+        // console.log('hello');
         getPrice(info);
       });
     });
@@ -78,7 +78,7 @@ class CartCard extends React.Component {
 
   render() {
     const { title, price, thumbnail, availableQuantity } = this.props;
-    console.log(availableQuantity);
+    // console.log(availableQuantity);
     const { mount, counter } = this.state;
 
     return (

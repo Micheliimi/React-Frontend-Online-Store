@@ -6,7 +6,7 @@ import imagem from '../download.png';
 class CartButton extends React.Component {
   render() {
     const { cart } = this.props;
-    console.log(cart);
+    // console.log(cart);
     return (
       <div>
         <Link
