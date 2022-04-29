@@ -14,10 +14,20 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const result = JSON.parse(localStorage.getItem('cart'));
+    this.setState({
+      cart: result || [],
+    });
+  }
+
   addToCart = (title, price, thumbnail, availableQuantity) => {
     this.setState((prevState) => ({
       cart: [...prevState.cart, { title, price, thumbnail, availableQuantity }],
-    }));
+    }), () => {
+      const { cart } = this.state;
+      localStorage.setItem('cart', JSON.stringify(cart));
+    });
   }
 
   render() {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class ProductCard extends React.Component {
   render() {
     const { title, price, thumbnail, availableQuantity, addToCart } = this.props;
-    // console.log(availableQuantity);
+    console.log(availableQuantity);
     return (
       <div data-testid="product">
         <div>
@@ -19,7 +19,6 @@ class ProductCard extends React.Component {
             to={ {
               pathname: '/productdetails',
               state: { title, price, thumbnail },
-              // data: { addToCart },
             } }
           >
             Mais Detalhes

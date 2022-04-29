@@ -78,7 +78,7 @@ class CartCard extends React.Component {
 
   render() {
     const { title, price, thumbnail, availableQuantity } = this.props;
-    // console.log(availableQuantity);
+    console.log(availableQuantity);
     const { mount, counter } = this.state;
 
     return (

@@ -50,7 +50,7 @@ class ShoppingCart extends React.Component {
       <div>
         {cart.length > 0 ? cart.map((element, index) => {
           const { title, price, thumbnail, availableQuantity } = element;
-          // console.log(availableQuantity)
+          console.log(availableQuantity);
           return (
             <div key={ title }>
               <CartCard

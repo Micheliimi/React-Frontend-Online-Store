@@ -50,8 +50,9 @@ class MainPage extends React.Component {
 
   render() {
     const { categories, products } = this.state;
-    const { addToCart, cart } = this.props;
-    // const { availableQuantity } = cart;
+    const { addToCart, cart, availableQuantity } = this.props;
+    // const quantity = 'available_quantity';
+
     return (
       <div>
         <input
@@ -68,7 +69,7 @@ class MainPage extends React.Component {
         >
           Pesquisar
         </button>
-        <CartButton cart={ cart } />
+        <CartButton cart={ cart } availableQuantity={ availableQuantity } />
         <p
           data-testid="home-initial-message"
         >
@@ -90,15 +91,15 @@ class MainPage extends React.Component {
         })}
         {products.length > 0 && (
           products.map((element) => {
-            const { title, price, thumbnail, availableQuantity } = element;
-            // console.log(available_quantity);
+            const { title, price, thumbnail, available_quantity: quantity } = element;
+            // const quantity = element.available_quantity; // Outra solução para renomear chave sem camel case.
             return (
               <ProductCard
                 key={ title }
                 title={ title }
                 price={ price }
                 thumbnail={ thumbnail }
-                availableQuantity={ availableQuantity }
+                availableQuantity={ quantity }
                 addToCart={ addToCart }
               />
             );
@@ -111,6 +112,7 @@ class MainPage extends React.Component {
 MainPage.propTypes = {
   addToCart: PropTypes.func.isRequired,
   cart: PropTypes.arrayOf.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
 };
 
 export default MainPage;
