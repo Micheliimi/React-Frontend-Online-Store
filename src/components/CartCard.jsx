@@ -51,7 +51,8 @@ class CartCard extends React.Component {
 
   decrement = () => {
     this
-      .setState((prevState) => ({ counter: prevState.counter - 1 }), () => this.sendResume());
+      .setState((prevState) => ({ counter: prevState.counter - 1 }), () => this
+        .sendResume());
   }
 
   sendResume = () => {
@@ -77,7 +78,7 @@ class CartCard extends React.Component {
 
   render() {
     const { title, price, thumbnail, availableQuantity } = this.props;
-    // console.log(availableQuantity);
+    console.log(availableQuantity);
     const { mount, counter } = this.state;
 
     return (
@@ -143,6 +144,7 @@ CartCard.propTypes = {
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   getPrice: PropTypes.func.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
 };
 
 export default CartCard;
